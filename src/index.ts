@@ -72,14 +72,13 @@ task("styles", () => {
             outputStyle: isProduction ? "compressed" : "expanded",
             sourceMap: !isProduction
         }))
-        .pipe(gulpIf(!isProduction, sourcemaps.write("dist/styles")))
+        .pipe(gulpIf(!isProduction, sourcemaps.write("")))
         .pipe(dest("dist/styles"));
 });
 
 task("scripts", () => {
     return src("src/scripts/*.ts", {
-        ignore: "**/_*",
-        read: false
+        ignore: "**/_*"
     })
         .pipe(gulpIf(!isProduction, sourcemaps.init()))
         .pipe(gulpRollup([
@@ -89,7 +88,7 @@ task("scripts", () => {
             }),
             typescript()
         ].concat(isProduction ? [terser()] : [])))
-        .pipe(gulpIf(!isProduction, sourcemaps.write("dist/scripts")))
+        .pipe(gulpIf(!isProduction, sourcemaps.write("")))
         .pipe(dest("dist/scripts"));
 });
 
