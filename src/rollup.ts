@@ -1,10 +1,10 @@
 import { Plugin, rollup, RollupCache } from "rollup";
-import { plugin } from "./plugin";
+import { pluginEmpty } from "./plugin";
 
 let cache: RollupCache;
 
 export function gulpRollup(plugins?: Plugin[]) {
-    return plugin("rollup", async (chunk, encoding, callback) => {
+    return pluginEmpty("rollup", async (chunk, encoding, callback) => {
         const bundle = await rollup({
             cache, plugins,
             input: chunk.path
@@ -20,5 +20,5 @@ export function gulpRollup(plugins?: Plugin[]) {
         chunk.extname = ".js";
 
         callback(null, chunk);
-    }, true);
+    });
 }
