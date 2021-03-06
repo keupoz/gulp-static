@@ -1,0 +1,9 @@
+{
+    "extends": "@keupoz/typescript-config/tsconfig.json",
+    "compilerOptions": {
+        "module": "CommonJS",
+        "noEmit": false,
+        "outDir": "dist"
+    },
+    "include": ["src"]
+}
