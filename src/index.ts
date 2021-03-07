@@ -40,7 +40,7 @@ task("favicon", () => {
 });
 
 task("fontawesome", () => {
-    return src("node_modules/@fortawesome/fontawesome-free/webfonts/*.woff")
+    return src("node_modules/@fortawesome/fontawesome-free/webfonts/*.woff2")
         .pipe(dest("dist/assets/fonts"));
 });
 
