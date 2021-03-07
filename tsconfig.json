@@ -1,7 +1,7 @@
 {
     "extends": "@keupoz/typescript-config/tsconfig.json",
     "compilerOptions": {
-        "module": "CommonJS",
+        "module": "ES6",
         "noEmit": false,
         "outDir": "dist"
     },
