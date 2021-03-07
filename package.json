@@ -1,6 +1,6 @@
 {
     "name": "@keupoz/gulp-static",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Keupoz' personal Gulp config for static website generating",
     "main": "dist/index.js",
     "scripts": {
