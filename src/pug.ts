@@ -13,7 +13,7 @@ export function pug(data: any, pretty: boolean) {
             template = compile(contents, {
                 pretty,
 
-                cache: true,
+                cache: false,
                 filename: chunk.path,
 
                 filters: {
