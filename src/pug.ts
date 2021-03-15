@@ -7,14 +7,13 @@ import { plugin } from "./plugin";
 
 const icon = initIcons();
 
-export function pug(data: any, pretty: boolean) {
+export function pug(data: any, isProduction: boolean) {
     return plugin("pug", (chunk, encoding, callback) => {
         const contents = chunk.contents.toString(encoding),
             template = compile(contents, {
-                pretty,
-
                 cache: false,
                 filename: chunk.path,
+                pretty: isProduction,
 
                 filters: {
                     markdown(template: string) {
@@ -22,11 +21,24 @@ export function pug(data: any, pretty: boolean) {
                     }
                 }
             }),
+            root = isProduction && "site" in data && "root" in data.site ? String(data.site.root) : "/",
             rendered = template({
                 data, icon, markdown,
 
+                r(literals: TemplateStringsArray, ...values: any[]) {
+                    let result = "";
+
+                    for (let i = 0; i < values.length; i++) {
+                        result += literals[i] + String(values[i]);
+                    }
+
+                    result += literals[literals.length - 1];
+
+                    return posix.join(root, result);
+                },
+
                 glob(pattern: string) {
-                    return glob.sync(pattern).map((path) => posix.join("/", path));
+                    return glob.sync(pattern).map((path) => posix.join(root, path));
                 }
             });
 

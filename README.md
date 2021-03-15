@@ -57,6 +57,9 @@ Entries name of which starts with underscore (`_`) are ignored.
 
 All data is merged recursively. So you can have a dir and a file called the same name.
 
+### `r` tag function
+Adds root to specified path. Root is `data.site.root` if exists and if environment is production. Otherwise root is `"/"`.
+
 ## Styles
 
 **Entry**: `src/styles/*.scss`
