@@ -4,7 +4,8 @@
     "description": "Keupoz' personal Gulp config for static website generating",
     "main": "dist/index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "NODE_ENV=production rollup -c"
     },
     "files": [
         "dist",
