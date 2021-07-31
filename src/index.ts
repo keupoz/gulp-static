@@ -13,7 +13,7 @@ import { pug } from "./pug";
 import { gulpRollup } from "./rollup";
 import { sass } from "./sass";
 
-let isProduction = process.env.NODE_ENV === "production";
+let isProduction = process.env["NODE_ENV"] === "production";
 
 const DATA = {} as any;
 
@@ -110,12 +110,12 @@ task("watch", async () => {
 
 task("build:init", async () => {
     isProduction = true;
-    process.env.NODE_ENV = "production";
+    process.env["NODE_ENV"] = "production";
 });
 
 task("dev:init", async () => {
     isProduction = false;
-    process.env.NODE_ENV = "development";
+    process.env["NODE_ENV"] = "development";
 });
 
 task("assets:full", parallel("assets", "favicon", "fontawesome"));

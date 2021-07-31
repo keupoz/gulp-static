@@ -29,7 +29,7 @@ export function pug(data: any, isProduction: boolean) {
                     let result = "";
 
                     for (let i = 0; i < values.length; i++) {
-                        result += literals[i] + String(values[i]);
+                        result += String(literals[i]) + String(values[i]);
                     }
 
                     result += literals[literals.length - 1];

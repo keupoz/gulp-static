@@ -2,6 +2,8 @@ import { dict, object, string } from "@mojotech/json-type-validation";
 import { readFileSync } from "fs";
 import YAML from "yaml";
 
+const ICON_PLACEHOLDER = "exclamation-circle";
+
 const iconsDecoder = dict(object({
     unicode: string()
 }));
@@ -20,7 +22,11 @@ export function initIcons() {
      * @returns Found or fallback icon
      */
     function icon(name: string) {
-        const icon = name in ICONS ? ICONS[name] : ICONS["exclamation-circle"];
+        const icon = name in ICONS ? ICONS[name] : ICONS[ICON_PLACEHOLDER];
+
+        if (icon === undefined) {
+            throw new Error(`Couldn't get icon neither "${name}" nor "${ICON_PLACEHOLDER}" placeholder`);
+        }
 
         return `&#x${icon.unicode};`;
     }
