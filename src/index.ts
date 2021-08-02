@@ -1,5 +1,6 @@
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
+import sucrase from "@rollup/plugin-sucrase";
 import typescript from "@rollup/plugin-typescript";
 import browserSync from "browser-sync";
 import del from "del";
@@ -86,7 +87,10 @@ task("scripts", () => {
             commonjs({
                 transformMixedEsModules: true
             }),
-            typescript()
+            isProduction ? typescript() : sucrase({
+                exclude: ["node_modules/**"],
+                transforms: ["typescript"]
+            })
         ].concat(isProduction ? [terser()] : [])))
         .pipe(gulpIf(!isProduction, sourcemaps.write("")))
         .pipe(dest("dist/scripts"));
