@@ -1,6 +1,6 @@
 import MarkdownIt from "markdown-it";
 
-function slugify(text: string) {
+export function slugify(text: string) {
     return encodeURIComponent(text.replace(/\s+/g, "-").replace(/(!|\?)/g, "").toLowerCase());
 }
 

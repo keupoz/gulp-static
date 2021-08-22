@@ -2,7 +2,7 @@ import { glob } from "glob";
 import { posix } from "path";
 import { compile } from "pug";
 import { initIcons } from "./fontawesome";
-import { markdown } from "./markdown";
+import { markdown, slugify } from "./markdown";
 import { plugin } from "./plugin";
 
 const icon = initIcons();
@@ -23,7 +23,7 @@ export function pug(data: any, isProduction: boolean) {
             }),
             root = isProduction && "site" in data && "root" in data.site ? String(data.site.root) : "/",
             rendered = template({
-                data, icon, markdown,
+                data, icon, markdown, slugify,
 
                 r(literals: TemplateStringsArray, ...values: any[]) {
                     let result = "";
