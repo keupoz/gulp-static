@@ -1,7 +1,12 @@
 import MarkdownIt from "markdown-it";
+import anchor from "markdown-it-anchor";
+// @ts-ignore
+import attrs from "markdown-it-attrs";
+import toc from "markdown-it-toc-done-right";
+import slug from "slug";
 
 export function slugify(text: string) {
-    return encodeURIComponent(text.replace(/\s+/g, "-").replace(/(!|\?)/g, "").toLowerCase());
+    return slug(text);
 }
 
 const md = new MarkdownIt({
@@ -10,16 +15,18 @@ const md = new MarkdownIt({
     typographer: true
 });
 
-md.use(require("markdown-it-attrs"));
+md.use(attrs);
 
-md.use(require("markdown-it-anchor"), {
+md.use(anchor, {
     slugify,
-    permalink: true,
-    permalinkBefore: true,
-    permalinkSymbol: "§"
+    permalink: anchor.permalink.ariaHidden({
+        placement: "before",
+        space: true,
+        symbol: "#"
+    })
 });
 
-md.use(require("markdown-it-toc-done-right"), {
+md.use(toc, {
     slugify,
     listType: "ul"
 });
