@@ -26,6 +26,7 @@
         "@fortawesome/fontawesome-free": "^5.15.3",
         "@mojotech/json-type-validation": "^3.1.0",
         "@rollup/plugin-commonjs": "^20.0.0",
+        "@rollup/plugin-json": "^4.1.0",
         "@rollup/plugin-node-resolve": "^13.0.4",
         "@rollup/plugin-sucrase": "^4.0.0",
         "@rollup/plugin-typescript": "^8.2.5",
